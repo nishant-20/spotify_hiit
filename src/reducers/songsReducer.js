@@ -122,6 +122,27 @@ export const songsReducer = (state = defaultState, action) => {
                 searchSongsError: true
             };
 
+        case "GET_RECOMMENDATIONS_PENDING":
+            return {
+                ...state,
+                getRecommendationsPending: true
+            };
+
+        case "GET_RECOMMENDATIONS_SUCCESS":
+            return {
+                ...state,
+                getRecommendationsPending: false,
+                getRecommendationsError: false,
+                songs: action.songs
+            };
+
+        case "GET_RECOMMENDATIONS_ERROR":
+            return {
+                ...state,
+                getRecommendationsPending: false,
+                getRecommendationsError: true,
+            };
+
         default:
             return state;
     }

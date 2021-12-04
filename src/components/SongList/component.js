@@ -10,6 +10,10 @@ class SongList extends Component {
             && nextProps.fetchSongsPending
             && nextProps.viewType === "songs") {
             this.props.fetchSongs(nextProps.token);
+
+            // Fetching available genres and top artists for a user for recommendations
+            this.props.fetchAvailableGenres(nextProps.token);
+            this.props.fetchTopArtists(nextProps.token);
         }
     }
 

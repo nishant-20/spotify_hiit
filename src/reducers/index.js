@@ -6,6 +6,7 @@ import uiReducer from "./uiReducer";
 import playlistReducer from "./playlistReducer";
 import songsReducer from "./songsReducer";
 import artistsReducer from "./artistsReducer";
+import genresReducer from "./genresReducer";
 
 export default combineReducers({
     tokenReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     uiReducer,
     playlistReducer,
     songsReducer,
-    artistsReducer
+    artistsReducer,
+    genresReducer
 });

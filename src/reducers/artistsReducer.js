@@ -31,6 +31,28 @@ export const artistsReducer = (state = defaultState, action) => {
                 fetchArtistsError: true
             };
 
+        case "FETCH_TOP_ARTISTS_PENDING":
+            return {
+                ...state,
+                fetchTopArtistsPending: true
+            };
+
+        case "FETCH_TOP_ARTISTS_SUCCESS":
+            return {
+                ...state,
+                topArtistIds: action.topArtistIds,
+                topArtistGenres: action.topArtistGenres,
+                fetchTopArtistsPending: false,
+                fetchTopArtistsError: false
+            };
+
+        case "FETCH_TOP_ARTISTS_ERROR":
+            return {
+                ...state,
+                fetchTopArtistsPending: false,
+                fetchTopArtistsError: true
+            };
+
         default:
             return state;
     }

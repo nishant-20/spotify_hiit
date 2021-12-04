@@ -1,3 +1,5 @@
+import uniqBy from 'lodash/uniqBy';
+
 export const setArtistIds = (artistIds) => {
     return {
         type: "SET_ARTIST_IDS",
@@ -43,6 +45,64 @@ export const fetchArtists = (accessToken, artistIds) => {
         });
     }
 }
+
+export const fetchTopArtistsPending = () => {
+    return {
+        type: "FETCH_TOP_ARTISTS_PENDING"
+    };
+};
+
+export const fetchTopArtistsSuccess = (topArtistIds, topArtistGenres) => {
+    return {
+        type: "FETCH_TOP_ARTISTS_SUCCESS",
+        topArtistIds,
+        topArtistGenres
+    };
+};
+
+export const fetchTopArtistsError = (err) => {
+    return {
+        type: "FETCH_TOP_ARTISTS_ERROR"
+    };
+};
+
+export const fetchTopArtists = (accessToken) => {
+    return dispatch => {
+        const request = new Request("https://api.spotify.com/v1/me/top/artists", {
+            headers: new Headers({
+                "Authorization": "Bearer "+ accessToken
+            })
+        });
+
+        dispatch(fetchTopArtistsPending());
+
+        fetch(request).then(res => {
+            return res.json();
+        }).then(res => {
+            let topArtistIds, topArtistGenres, topArtistGenresList;
+
+            // Extract the artist Ids
+            topArtistIds = res.items.map(item => {
+                return item.id;
+            }).join(',');
+
+            // Extract the genres of the top artists
+            topArtistGenres = res.items.map(item => {
+                return item.genres.join(',');
+            }).join(',');
+
+            topArtistGenresList = uniqBy(topArtistGenres.split(',').map(item => { return item.replace(/\s+/g, '-');}), (item) => {
+                return item;
+            });
+
+            topArtistGenres = topArtistGenresList.join(',');
+
+            dispatch(fetchTopArtistsSuccess(topArtistIds,topArtistGenres))
+        }).catch(err => {
+            dispatch(fetchTopArtistsError(err));
+        })
+    };
+};
 
 export const fetchArtistSongsPending = () => {
     return {

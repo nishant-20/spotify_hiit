@@ -2,6 +2,8 @@ import SongList from "./component";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchSongs } from "../../actions/songActions";
+import { fetchAvailableGenres } from "../../actions/genreActions";
+import { fetchTopArtists } from "../../actions/artistActions";
 
 const mapStateToProps = (state) => {
     return {
@@ -16,7 +18,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        fetchSongs
+        fetchSongs,
+        fetchAvailableGenres,
+        fetchTopArtists
     }, dispatch);
 };
 

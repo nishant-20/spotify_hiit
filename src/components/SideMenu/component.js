@@ -6,12 +6,16 @@ const SideMenu = ({
     token,
     title,
     artistIds,
+    topArtistIds,
+    topArtistGenres,
+    genres,
     fetchFeatured,
     updateHeaderTitle,
     fetchRecentlyPlayed,
     fetchSongs,
     fetchArtists,
-    updateViewType
+    updateViewType,
+    getRecommendations
 }) => {
     const handleMenuItemClick = (name) => {
         console.log(name);
@@ -20,9 +24,34 @@ const SideMenu = ({
     }
 
     const handleBrowseClick = () => {
+        fetchFeatured(token);
         updateHeaderTitle("Browse");
         updateViewType("Browse");
-        fetchFeatured(token);
+    }
+
+    const shuffleArray = (arr) => {
+        let currIndex = arr.length, randomIndex;
+
+        while(currIndex!==0) {
+            randomIndex = Math.floor(Math.random() * currIndex);
+            currIndex--;
+
+            [arr[currIndex], arr[randomIndex]] = [arr[randomIndex], arr[currIndex]];
+        }
+
+        return arr.slice(0,2).join(",");
+    }
+
+    const handleRecommendationClick = () => {
+        const topArtistIdsList = topArtistIds.split(',');
+        const topArtistGenresList = topArtistGenres.split(',').filter(item => genres.includes(item));
+
+        const seed_artists = shuffleArray(topArtistIdsList);
+        const seed_genres = shuffleArray(topArtistGenresList.length>=2 ? topArtistGenresList : genres);
+
+        getRecommendations(seed_artists,seed_genres,token);
+        updateHeaderTitle("Recommendations");
+        updateViewType("Recommendations");
     }
 
     const renderSideMenu = () => {
@@ -66,7 +95,8 @@ const SideMenu = ({
             </li>
             <li
                 key="recommendations"
-                className="side-menu-item radio">Recommendations</li>
+                onClick={handleRecommendationClick}
+                className={title==="Recommendations" ? "side-menu-item radio active" : "side-menu-item radio"}>Recommendations</li>
             <h3 className="user-library-header">My Libary</h3>
             {renderSideMenu()}
         </ul>

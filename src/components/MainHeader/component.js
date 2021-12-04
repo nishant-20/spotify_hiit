@@ -24,8 +24,6 @@ const MainHeader = ({
         })[0];
     }
 
-    console.log(currentPlaylist);
-
     return (
         <div className="section-title">
             {
@@ -61,6 +59,8 @@ const MainHeader = ({
 
             {
                 (
+                    viewType === "search" ||
+                    viewType === "Recommendations" ||
                     headerTitle === "Songs" ||
                     headerTitle === "Recently Played" ||
                     headerTitle === "Artists"
@@ -78,17 +78,6 @@ const MainHeader = ({
                 headerTitle === "Browse" && (
                     <div>
                         <h3 className="header-title">{headerTitle}</h3>
-                    </div>
-                )
-            }
-
-            {
-                viewType === "search" && (
-                    <div>
-                        <h3 className="header-title">{headerTitle}</h3>
-                        { headerTitle !== "Artists" && (
-                            <button className="main-pause-play-btn">PLAY</button>
-                        )}
                     </div>
                 )
             }
