@@ -1,0 +1,14 @@
+.user-details-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px 10px;
+    margin-right: 10px;
+    background: rgb(24, 24, 24);
+}
+
+.user-details-username {
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    top: 5px;
+}

@@ -1,0 +1,80 @@
+.section-title {
+    font-size: 34px;
+    font-weight: 800;
+    padding: 0 0 20px 0;
+    font-family: "Proxima Bold", Georgia, sans-serif;
+}
+
+.header-title {
+    font-size: 48px;
+    padding: 3px 0 5px 0;
+}
+
+.playlist-title-container {
+    display: flex;
+}
+
+.playlist-image {
+    width: 230px;
+}
+
+.playlist-info-container {
+    padding-left: 20px;
+    position: relative;
+    top: 75px;
+}
+
+.playlist-text {
+    font-family: "Proxima-Thin", Georgia, sans-serif;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+
+.created-by {
+    font-family: "Proxima-Thin", Georgia, sans-serif;
+    font-size: 13px;
+    color: #aaa;
+    padding: 8px 0;
+}
+
+.lighter-text {
+    font-family: 'Proxima Nova', Georgia, sans-serif;
+    color: #fff;
+}
+
+.main-pause-play-btn {
+    background: #1db954;
+    font-family: 'Proxima Nova', Georgia, sans-serif;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    width: 100px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    outline: none;
+}
+
+.current-artist-header-container {
+    display: flex;
+}
+
+.current-artist-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+
+.current-artist-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 20px;
+}
+
+.current-artist-info p {
+	text-transform: uppercase;
+	font-family: 'Proxima Thin', Georgia, sans-serif;
+	font-size: 13px;
+}

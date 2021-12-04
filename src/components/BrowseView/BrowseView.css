@@ -1,0 +1,30 @@
+.browse-view-container {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+}
+
+.category-item {
+    padding: 20px;
+    list-style-type: none;
+    line-height: 28px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 250px;
+    cursor: pointer;
+}
+
+.category-image {
+    position: relative;
+}
+
+.category-image img {
+    width: 100%;
+}
+
+.category-image img:hover {
+    opacity: 0.3;
+}

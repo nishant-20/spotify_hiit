@@ -1,0 +1,41 @@
+.user-playlist-container {
+    padding: 20px;
+    color: rgb(179,179,179);
+    margin-top: 20;
+}
+
+.user-playlist-header {
+    font-weight: 300;
+    text-transform: uppercase;
+    font-family: 'Proxima Thin', Georgia, sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 0 0 5px 0;
+    letter-spacing: 1px;
+}
+
+.user-playlist-item {
+    list-style-type: none;
+    line-height: 28px;
+    font-size: 14px;
+    width: 140px;
+    overflow: hidden;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-playlist-item:hover {
+    color: rgb(255,255,255);
+}
+
+.user-playlist-container .active {
+    margin-left: -3px;
+}
+
+.user-playlist-container .active:before {
+    content: "";
+    border-left: 3px solid #1db954;
+    position: relative;
+    left: -18px;
+}
