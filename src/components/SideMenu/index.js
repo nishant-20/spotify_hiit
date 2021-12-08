@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchSongs,
         fetchArtists,
         updateViewType,
-        getRecommendations
+        getRecommendations,
     }, dispatch);
 };
 

@@ -1,10 +1,18 @@
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { updateVolume } from "../../actions/soundActions";
 import VolumeControls from "./component";
 
 const mapStateToProps = (state) => {
     return {
-        volume: 50
+        volume: state.soundReducer.volume
     };
 };
 
-export default connect(mapStateToProps,null)(VolumeControls);
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({
+        updateVolume
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VolumeControls);

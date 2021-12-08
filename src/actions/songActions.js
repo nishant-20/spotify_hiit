@@ -36,6 +36,8 @@ export const fetchRecentlyPlayed = (accessToken) => {
         }).then(res => {
             res.items = uniqBy(res.items, (item) => {
                 return item.track.id;
+            }).filter(item => {
+                return item.track.preview_url !== null;
             });
 
             dispatch(fetchRecentlyPlayedSuccess(res.items));
@@ -72,7 +74,7 @@ export const fetchSongs = (accessToken) => {
             })
         });
 
-        dispatch(fetchRecentlyPlayedPending());
+        dispatch(fetchSongsPending());
 
         fetch(request).then(res => {
             if(res.statusText === "Unauthourized") {
@@ -80,6 +82,13 @@ export const fetchSongs = (accessToken) => {
             }
             return res.json();
         }).then(res => {
+            // Filtering duplicate songs and songs not having a preview URL
+            res.items = uniqBy(res.items, (item) => {
+                return item.track.id;
+            }).filter(item => {
+                return item.track.preview_url !== null;
+            });
+
             let artistsIds = uniqBy(res.items, (item) => {
                 return item.track.artists[0].name
             }).map(item => {
@@ -87,11 +96,6 @@ export const fetchSongs = (accessToken) => {
             }).join(",");
 
             dispatch(setArtistIds(artistsIds));
-
-            res.items = uniqBy(res.items, (item) => {
-                return item.track.id;
-            })
-
             dispatch(fetchSongsSuccess(res.items));
         }).catch(err => {
             dispatch(fetchSongsError(err));
@@ -135,10 +139,17 @@ export const searchSongs = (searchTerm, token) => {
 
             return res.json();
         }).then(res => {
+            // Changing the response structure to match the response of the fetchSongs
             res.items = res.tracks.items.map(item => {
                 return {
                     track: item
                 };
+            });
+
+            res.items = uniqBy(res.items, (item) => {
+                return item.track.id;
+            }).filter(item => {
+                return item.track.preview_url !== null;
             });
 
             dispatch(searchSongsSuccess(res.items));
@@ -152,5 +163,37 @@ export const updateViewType = (view) => {
     return {
         type: "UPDATE_VIEW_TYPE",
         view
+    };
+};
+
+export const playSong = (song) => {
+    return {
+        type: "PLAY_SONG",
+        song
+    };
+};
+
+export const stopSong = (song) => {
+    return {
+        type: "STOP_SONG"
+    };
+};
+
+export const resumeSong = (song) => {
+    return {
+        type: "RESUME_SONG"
+    };
+};
+
+export const pauseSong = (song) => {
+    return {
+        type: "PAUSE_SONG"
+    };
+};
+
+export const increaseSongTime = (time) => {
+    return {
+        type: "INCREASE_SONG_TIME",
+        time
     };
 };

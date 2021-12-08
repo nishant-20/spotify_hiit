@@ -7,3 +7,11 @@
     height: 80px;
     z-index: 20;
 }
+
+.caret-up-down {
+    position: absolute;
+    top: 22px;
+    left: 15px;
+    color: #fff;
+    z-index: 40;
+}

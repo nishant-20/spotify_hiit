@@ -10,6 +10,15 @@ class VolumeControls extends Component {
         };
     }
 
+    updateVolume = (e) => {
+        this.setState({
+            volume: e.target.value
+        });
+
+        // Volume would be a multiple of 10
+        this.props.updateVolume(Math.ceil(e.target.value / 10) * 10);
+    }
+
     render() {
         return (
             <div className="volume-container">
@@ -19,7 +28,8 @@ class VolumeControls extends Component {
                     type="range"
                     min={0}
                     max={100}
-                    value={this.state.volume}>
+                    value={this.state.volume}
+                    onChange={this.updateVolume}>
                 </input>
             </div>
         )
@@ -27,7 +37,8 @@ class VolumeControls extends Component {
 }
 
 VolumeControls.propTypes = {
-    volume: PropTypes.number
+    volume: PropTypes.number,
+    updateVolume: PropTypes.func
 };
 
 export default VolumeControls;

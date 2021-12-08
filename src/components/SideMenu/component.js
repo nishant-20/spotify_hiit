@@ -11,6 +11,7 @@ const SideMenu = ({
     genres,
     fetchFeatured,
     updateHeaderTitle,
+    fetchQueue,
     fetchRecentlyPlayed,
     fetchSongs,
     fetchArtists,
@@ -18,7 +19,6 @@ const SideMenu = ({
     getRecommendations
 }) => {
     const handleMenuItemClick = (name) => {
-        console.log(name);
         updateHeaderTitle(name);
         updateViewType(name);
     }
@@ -57,6 +57,9 @@ const SideMenu = ({
     const renderSideMenu = () => {
         const menu = [
             {
+                name: "Queue",
+            },
+            {
                 name: "Recently Played",
                 action: fetchRecentlyPlayed
             },
@@ -77,7 +80,11 @@ const SideMenu = ({
                     key={item.name}
                     className={title === item.name ? "side-menu-item active" : "side-menu-item"}
                     onClick={() => {
-                        item.fetchArtistsFlag ? item.action(token,artistIds) : item.action(token);
+                        if(item.fetchArtistsFlag) {
+                            item.action(token,artistIds);
+                        } else if (item.name !== "Queue") {
+                            item.action(token);
+                        }
                         handleMenuItemClick(item.name);
                     }}>
                     {item.name}

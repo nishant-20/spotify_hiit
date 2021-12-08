@@ -1,6 +1,6 @@
 .song-details {
     position: absolute;
-    left: 20px;
+    left: 50px;
     /* top: 20px;  */
     line-height: 22px;
 }
@@ -25,7 +25,8 @@
 
 .forward,
 .reverse,
-.play-btn {
+.play-btn,
+.pause-btn {
     padding: 0 5px;
     color: rgb(179,179,179);
     cursor: pointer;
@@ -42,7 +43,17 @@
     font-size: 40px;
 }
 
+.song-player-container .pause-btn {
+    position: relative;
+    top: -7px;
+    font-size: 40px;
+}
+
 .play-btn .fa {
+    -webkit-text-stroke: 4px rgb(40,40,40);
+}
+
+.pause-btn .fa {
     -webkit-text-stroke: 4px rgb(40,40,40);
 }
 

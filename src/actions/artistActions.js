@@ -146,6 +146,12 @@ export const fetchArtistSongs = (artistId, token) => {
                 };
             });
 
+            res.items = uniqBy(res.items, (item) => {
+                return item.track.id;
+            }).filter(item => {
+                return item.track.preview_url !== null;
+            });
+
             dispatch(fetchArtistSongsSuccess(res.items));
         }).catch(err => {
             dispatch(fetchArtistSongsSuccess(err));

@@ -1,0 +1,12 @@
+.caret-up-down {
+    position: absolute;
+    top: 22px;
+    left: 15px;
+    color: #fff;
+    z-index: 40;
+    opacity: 0.6
+}
+
+.caret-up-down:hover {
+    opacity: 1
+}

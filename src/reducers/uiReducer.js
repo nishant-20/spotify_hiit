@@ -1,5 +1,6 @@
 const defaultState = {
-    title: "Songs"
+    title: "Songs",
+    toggleFlag: true
 };
 
 export const uiReducer = (state = defaultState, action) => {
@@ -8,6 +9,12 @@ export const uiReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 title: action.title
+            };
+
+        case "TOGGLE_VIEW":
+            return {
+                ...state,
+                toggleFlag: action.toggleFlag
             };
 
         default:

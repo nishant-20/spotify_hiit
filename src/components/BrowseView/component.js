@@ -13,7 +13,7 @@ const BrowseView = (
     if(view) {
         browseView = view.map((item, i) => {
             const getPlaylistSongs = () => {
-                console.log("getPlaylistSongs");
+                // console.log("getPlaylistSongs");
                 addPlaylistItem(item);
                 updateHeaderTitle(item.name);
                 fetchPlaylistSongs(item.owner.id, item.id, token);

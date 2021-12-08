@@ -1,6 +1,11 @@
 const defaultState = {
     viewType: 'songs',
-    fetchSongsPending: true
+    fetchSongsPending: true,
+    songPlaying: false,
+    songPaused: true,
+    timeElapsed: 0,
+    songId: 0,
+    queueSongs: []
 };
 
 // Change viewType casing
@@ -141,6 +146,53 @@ export const songsReducer = (state = defaultState, action) => {
                 ...state,
                 getRecommendationsPending: false,
                 getRecommendationsError: true,
+            };
+
+        // Changing the queue when we play a song from the list
+        case "PLAY_SONG":
+            return {
+                ...state,
+                songPlaying: true,
+                songPaused: false,
+                songDetails: action.song,
+                songId: action.song.id,
+                timeElapsed: 0,
+            };
+
+        case "STOP_SONG":
+            return {
+                ...state,
+                songPlaying: false,
+                songPaused: true,
+                songDetails: null,
+                songId: null,
+                timeElapsed: 0
+            };
+
+        case "RESUME_SONG":
+            return {
+                ...state,
+                songPlaying: true,
+                songPaused: false
+            };
+
+        case "PAUSE_SONG":
+            return {
+                ...state,
+                songPlaying: false,
+                songPaused: true,
+            };
+
+        case "INCREASE_SONG_TIME":
+            return {
+                ...state,
+                timeElapsed: action.time
+            };
+
+        case "SET_QUEUE":
+            return {
+                ...state,
+                queueSongs: state.songs
             };
 
         default:

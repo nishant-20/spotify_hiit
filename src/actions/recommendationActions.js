@@ -1,3 +1,5 @@
+import uniqBy from 'lodash/uniqBy';
+
 export const getRecommendationsPending = () => {
     return {
         type: "GET_RECOMMENDATIONS_PENDING"
@@ -34,6 +36,12 @@ export const getRecommendations = (seed_artists,seed_genres,token) => {
                 return {
                     track: item
                 };
+            });
+
+            res.items = uniqBy(res.items, (item) => {
+                return item.track.id;
+            }).filter(item => {
+                return item.track.preview_url !== null;
             });
 
             dispatch(getRecommendationsSuccess(res.items));

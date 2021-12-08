@@ -83,7 +83,10 @@ export const fetchPlaylistSongs = (userId, playlistId, accessToken) => {
         }).then(res => {
             res.items = uniqBy(res.items, (item) => {
                 return item.track.id;
+            }).filter(item => {
+                return item.track.preview_url !== null;
             });
+
             dispatch(fetchPlaylistSongsSuccess(res.items));
         }).catch(err => {
             dispatch(fetchPlaylistSongsError(err));

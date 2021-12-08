@@ -1,21 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
-import "./SongList.css";
+import "./QueueView.css";
 
-class SongList extends Component {
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.token !== ""
-            && !nextProps.fetchSongsError
-            && nextProps.fetchSongsPending
-            && nextProps.viewType === "songs") {
-            this.props.fetchSongs(nextProps.token);
-
-            // Fetching available genres and top artists for a user for recommendations
-            this.props.fetchAvailableGenres(nextProps.token);
-            this.props.fetchTopArtists(nextProps.token);
-        }
-    }
+class QueueView extends Component {
 
     msToMinutesAndSeconds(ms) {
         const mins = Math.floor(ms/60000);
@@ -25,7 +13,6 @@ class SongList extends Component {
 
     handlePlayClick(song) {
         this.props.audioControl(song);
-        this.props.setQueue();
     }
 
     renderSongs() {
@@ -94,7 +81,6 @@ class SongList extends Component {
                 </div>
                 {
                     this.props.songs &&
-                    !this.props.fetchPlaylistSongsPending &&
                     this.renderSongs()
                 }
             </div>
@@ -102,23 +88,16 @@ class SongList extends Component {
     }
 }
 
-SongList.propTypes = {
-    token: PropTypes.string,
+// Add the members passed on directly to the component
+QueueView.propTypes = {
     songs: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-    fetchSongsError: PropTypes.bool,
-    fetchSongsPending: PropTypes.bool,
-    fetchPlaylistSongsPending: PropTypes.bool,
+    songId: PropTypes.string,
     songPlaying: PropTypes.bool,
     songPaused: PropTypes.bool,
-    songId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     viewType: PropTypes.string,
-    fetchSongs: PropTypes.func,
-    fetchAvailableGenres: PropTypes.func,
-    fetchTopArtists: PropTypes.func,
-    setQueue: PropTypes.func,
     resumeSong: PropTypes.func,
     pauseSong: PropTypes.func,
     audioControl: PropTypes.func,
 }
 
-export default SongList;
+export default QueueView;

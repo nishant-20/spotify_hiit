@@ -17,7 +17,7 @@ class UserPlaylists extends Component {
     renderPlaylists() {
         return this.props.playlistMenu.map(playlist => {
             const getPlaylistSongs = () => {
-                console.log(playlist.name);
+                // console.log(playlist.name);
                 this.props.fetchPlaylistSongs(playlist.owner.id, playlist.id, this.props.token);
                 this.props.updateHeaderTitle(playlist.name);
             }

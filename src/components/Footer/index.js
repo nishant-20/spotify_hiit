@@ -1,15 +1,27 @@
 import React from "react";
-import SongControls from "../SongControls/component";
+import PropTypes from "prop-types";
+import SongControls from "../SongControls";
 import VolumeControls from "../VolumeControls";
-
+import ToggleView from "../ToggleView";
 import "./Footer.css";
 
-const Footer = () => (
+const Footer = ({stopSong, resumeSong, pauseSong, audioControl}) => (
     <div className="footer">
-        {/* <i className="fa fa-angle-up" aria-hidden="true"/> */}
-        <SongControls />
+        <SongControls
+            stopSong = {stopSong}
+            resumeSong = {resumeSong}
+            pauseSong = {pauseSong}
+            audioControl = {audioControl} />
         <VolumeControls />
+        <ToggleView />
     </div>
 );
+
+Footer.propTypes = {
+    stopSong: PropTypes.func,
+    resumeSong: PropTypes.func,
+    pauseSong: PropTypes.func,
+    audioControl: PropTypes.func,
+}
 
 export default Footer;

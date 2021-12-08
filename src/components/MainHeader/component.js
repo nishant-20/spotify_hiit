@@ -2,12 +2,21 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./MainHeader.css";
 
+// TODO: Handle the condition when user moves to other view while the song is playing and the play/pause button text remains to be pause, the functionality is working fine (change the component to include lifecycle methods)
 const MainHeader = ({
         headerTitle,
         viewType,
         playlists,
         artists,
-        updateHeaderTitle}) => {
+        songs,
+        songId,
+        queueSongs,
+        songPaused,
+        songPlaying,
+        resumeSong,
+        pauseSong,
+        audioControl,
+        setQueue}) => {
 
     let currentPlaylist;
     let currentArtist;
@@ -24,6 +33,59 @@ const MainHeader = ({
         })[0];
     }
 
+    // Function to compare the queue to the song list on the current page
+    const compareQueueToSongList = () => {
+        if(!queueSongs)
+            return false;
+
+        if(queueSongs && songs && queueSongs.length !== songs.length)
+            return false;
+
+        let songIdList = queueSongs.map(item => {
+            return item.track.id;
+        });
+
+        let matchLength = songs.map(item => {
+            return item.track.id
+        }).filter(id => {
+            return songIdList.includes(id);
+        }).length;
+
+        return matchLength === queueSongs.length;
+    }
+
+    const handlePlayClick = () => {
+        // Check if any songs are playing currently, playing the songs for the first time
+        if(!compareQueueToSongList() && songs.length>0) {
+            audioControl(songs[0]);
+            setQueue();
+        }
+
+        if(songPaused && compareQueueToSongList()) {
+            // console.log("Inside handlePlayClick");
+            resumeSong();
+        }
+
+        // Pause the song
+        if(songPlaying && compareQueueToSongList()) {
+            pauseSong();
+        }
+    }
+
+    const getPlayButtonContent = () => {
+        let songIdList = songs.map(item => {
+            return item.track.id;
+        });
+
+        let buttonClass = "PLAY";
+
+        if(songIdList.includes(songId) && songPlaying) {
+            buttonClass = "PAUSE";
+        }
+
+        return buttonClass;
+    }
+
     return (
         <div className="section-title">
             {
@@ -35,8 +97,10 @@ const MainHeader = ({
                         <div className="playlist-info-container">
                             <p className="playlist-text">PLAYLIST</p>
                             <h3 className="header-title">{headerTitle}</h3>
-                            {currentPlaylist && (<p className="created-by">Created By: <span className="lighter-text">{currentPlaylist.owner.display_name}</span> - {currentPlaylist.tracks.total} songs</p>)}
-                            <button className="main-pause-play-btn">PLAY</button>
+                            {currentPlaylist && (<p className="created-by">Created By: <span className="lighter-text">{currentPlaylist.owner.display_name}</span> - {songs.length} songs</p>)}
+                            <button
+                                onClick={handlePlayClick}
+                                className="main-pause-play-btn">{getPlayButtonContent()}</button>
                         </div>
                     </div>
                 )
@@ -51,7 +115,9 @@ const MainHeader = ({
                         <div className="current-artist-info">
                             <p>Artist from your Library</p>
                             <h3>{currentArtist.name}</h3>
-                            <button className="main-pause-play-btn">PLAY</button>
+                            <button
+                                onClick={handlePlayClick}
+                                className="main-pause-play-btn">{getPlayButtonContent()}</button>
                         </div>
                     </div>
                 )
@@ -68,8 +134,23 @@ const MainHeader = ({
                     <div>
                         <h3 className="header-title">{headerTitle}</h3>
                         { headerTitle !== "Artists" && (
-                            <button className="main-pause-play-btn">PLAY</button>
+                            <button
+                            onClick={handlePlayClick}
+                            className="main-pause-play-btn">{getPlayButtonContent()}</button>
                         )}
+                    </div>
+                )
+            }
+
+            {
+                headerTitle === "Queue" && (
+                    <div>
+                        <h3 className="header-title">{headerTitle}</h3>
+                        <button
+                            onClick={() => {
+                                songPlaying ? pauseSong() : resumeSong()
+                            }}
+                            className="main-pause-play-btn">{songPlaying ? "PAUSE" : "PLAY"}</button>
                     </div>
                 )
             }
@@ -90,7 +171,15 @@ MainHeader.propTypes = {
     viewType: PropTypes.string,
     playlists: PropTypes.array,
     artists: PropTypes.array,
-    updateHeaderTitle: PropTypes.func
+    songs: PropTypes.array,
+    songId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    queueSongs: PropTypes.array,
+    songPaused: PropTypes.bool,
+    songPlaying: PropTypes.bool,
+    setQueue: PropTypes.func,
+    resumeSong: PropTypes.func,
+    pauseSong: PropTypes.func,
+    audioControl: PropTypes.func,
 }
 
 export default MainHeader;
