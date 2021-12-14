@@ -1,0 +1,103 @@
+.workout-name {
+    width: 200px;
+}
+
+.workout-description {
+    width: 200px;
+}
+
+.workout-name p,
+.workout-description p {
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 8px;
+    line-height: 42px;
+}
+
+.workoutlist-item-container {
+
+}
+
+.workoutlist-item {
+    display: flex;
+    list-style-type: none;
+    border-bottom: 1px solid #666;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.workoutlist-item:hover {
+    background: rgb(51, 51, 51);
+}
+
+.workoutlist-item .fa {
+    font-size: 15px;
+    padding: 0 8px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.workout-play {
+    color: #1db954;
+}
+
+.workout-info {
+    color: #3581b3;
+}
+
+.workout-edit {
+    color: #000000;
+}
+
+.workout-delete {
+    color: #c02121;
+}
+
+.workout-play,
+.workout-info,
+.workout-edit,
+.workout-delete {
+    opacity: 0.6;
+}
+
+.workout-play:hover,
+.workout-info:hover,
+.workout-edit:hover,
+.workout-delete:hover {
+    opacity: 1;
+}
+
+.workout-play-button:disabled {
+    pointer-events: none;
+}
+
+.exerciselist-body-container {
+
+}
+
+.exerciselist-item {
+    display: flex;
+    list-style-type: none;
+    border-bottom: 1px solid #666;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+    line-height: 30px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.exerciselist-item:hover {
+    background: rgb(241, 238, 238);
+}
+
+.exercise-name {
+    border-right: 1px solid #666;
+    width: 520px;
+    padding: 6px 0 6px 8px;
+}
+
+.exercise-duration {
+    padding: 6px 0 6px 8px;
+}

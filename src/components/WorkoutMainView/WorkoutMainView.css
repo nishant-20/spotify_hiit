@@ -1,0 +1,101 @@
+.workout-main-view-container {
+    width: 1280px;
+    margin-top: 150px;
+}
+
+.current-exercise-time-elapsed {
+    display: flex;
+    justify-content: space-between;
+}
+
+.current-exercise-time-elapsed > p {
+    font-family: "Proxima Bold", Georgia, sans-serif;
+    padding: 10px;
+    text-align: center;
+    font-size: 100px;
+    text-transform: uppercase;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.current-exercise-time-elapsed.active p {
+    color: rgb(233, 44, 44);
+}
+
+.current-exercise-name {
+    width: 600px;
+    padding: 10px;
+    margin-top: 30px;
+    margin: auto;
+    text-align: center;
+}
+
+.current-exercise-name p {
+    font-family: "Proxima Bold", Georgia, sans-serif;
+    font-size: 45px;
+    text-transform: uppercase;
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.workout-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.play-exercise {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.play-exercise:hover {
+    opacity: 1;
+}
+
+.play-exercise > .exercise-play {
+
+}
+
+.stop-workout {
+    margin-top: 14px;
+    margin-left: 30px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.stop-workout:hover {
+    opacity: 1;
+}
+
+.stop-workout > .exercise-stop {
+
+}
+
+.prev-exercise,
+.next-exercise {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 50px;
+    opacity: 0.6;
+}
+
+.next-exercise p,
+.prev-exercise p {
+    font-family: "Proxima Nova", Georgia, sans-serif;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;    
+}
+
+.prev-exercise:hover,
+.next-exercise:hover {
+    opacity: 1;
+    cursor: pointer;
+}

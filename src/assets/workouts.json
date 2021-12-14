@@ -1,0 +1,28 @@
+{
+    "workouts": [
+            {
+                "name": "Workout1",
+                "totalDuration": 30,
+                "exercises": [
+                    {"id": 1, "name": "Jumping Jacks", "duration": 10},
+                    {"id": 2, "name": "High Knees", "duration": 10},
+                    {"id": 3, "name": "Squat + Side Jumpy", "duration": 10}
+                ]
+            },
+            {
+                "name": "Workout2",
+                "totalDuration": 270,
+                "exercises": [
+                    {"id": 2, "name": "High Knees", "duration": 30},
+                    {"id": 3, "name": "Mountain Climbers", "duration": 30},
+                    {"id": 11, "name": "Half Burpee", "duration": 30},
+                    {"id": 7, "name": "Jump + Punches", "duration": 30},
+                    {"id": 12, "name": "High Side Plank Raises", "duration": 30},
+                    {"id": 13, "name": "Russian Twists", "duration": 30},
+                    {"id": 14, "name": "Switching Lunges", "duration": 30},
+                    {"id": 15, "name": "Push Ups Side to Side", "duration": 30},
+                    {"id": 1, "name": "Jumping Jacks", "duration": 30}
+                ]
+            }
+    ]
+}

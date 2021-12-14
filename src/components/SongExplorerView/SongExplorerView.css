@@ -1,0 +1,21 @@
+.left-side-section {
+    position: fixed;
+    top: 30px;
+    left: 10px;
+    bottom: 10px;
+    width: 180px;
+    overflow-y: auto;
+}
+
+.main-section {
+    width: 1040px;
+    position: relative;
+    left: 200px;
+    padding: 0 10px;
+}
+
+.main-section-container {
+    position: relative;
+    top: 50px;
+    padding-bottom: 100px;
+}

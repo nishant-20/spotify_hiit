@@ -5,14 +5,13 @@ import { setToken } from "./actions/tokenActions";
 import { playSong, stopSong, resumeSong, pauseSong } from "./actions/songActions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Header from "./components/Header";
 import "./App.css";
-import SideMenu from "./components/SideMenu";
-import MainView from "./components/MainView";
-import MainHeader from "./components/MainHeader";
-import UserPlaylists from "./components/UserPlaylists";
+import SongExplorerView from "./components/SongExplorerView";
 import Footer from "./components/Footer";
+import WorkoutView from "./components/WorkoutView";
 
+// TODO: Build MultiDevice Single Session
+// TODO: Implement Spotify SDK
 class App extends Component {
     static audio;
 
@@ -88,23 +87,12 @@ class App extends Component {
         return (
             <div>
                 <div className="app-container">
-                    <div className="left-side-section">
-                        <SideMenu />
-                        <UserPlaylists />
-                    </div>
-                    <div className="main-section">
-                        <Header />
-                        <div className="main-section-container">
-                            <MainHeader
-                                resumeSong = {this.resumeSong}
-                                pauseSong = {this.pauseSong}
-                                audioControl = {this.audioControl} />
-                            <MainView
-                                resumeSong = {this.resumeSong}
-                                pauseSong = {this.pauseSong}
-                                audioControl = {this.audioControl} />
-                        </div>
-                    </div>
+                    { this.props.toggleFlag ?
+                        <SongExplorerView
+                            resumeSong = {this.resumeSong}
+                            pauseSong = {this.pauseSong}
+                            audioControl = {this.audioControl} /> :
+                        <WorkoutView />}
                     <Footer
                         stopSong = {this.stopSong}
                         resumeSong = {this.resumeSong}
@@ -130,7 +118,8 @@ App.propTypes = {
 const mapStateToProps = (state) => {
     return {
         token: state.tokenReducer.token,
-        volume: state.soundReducer.volume
+        volume: state.soundReducer.volume,
+        toggleFlag: state.uiReducer.toggleFlag
    };
 };
 

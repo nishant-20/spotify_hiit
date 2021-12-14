@@ -7,9 +7,13 @@ class UserPlaylists extends Component {
         count: 0
     }
 
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.userId !== "" && nextProps.token !== "" && this.state.count<1) {
-            this.props.fetchPlaylistsMenu(nextProps.userId, nextProps.token);
+    componentDidMount() {
+        if(this.props.playlistMenu !== "") {
+            return;
+        }
+        
+        if(this.props.userId !== "" && this.props.token !== "" && this.state.count<1) {
+            this.props.fetchPlaylistsMenu(this.props.userId, this.props.token);
             this.setState({count: 1});
         }
     }

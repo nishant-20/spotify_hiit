@@ -1,6 +1,6 @@
 const defaultState = {
     title: "Songs",
-    toggleFlag: true
+    toggleFlag: false
 };
 
 export const uiReducer = (state = defaultState, action) => {

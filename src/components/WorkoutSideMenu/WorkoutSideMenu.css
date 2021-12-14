@@ -1,0 +1,30 @@
+.workout-side-menu-item {
+    list-style-type: none;
+    line-height: 28px;
+    font-size: 14px;
+    width: 140px;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.workout-side-menu-item:hover {
+    color: rgb(255,255,255);
+}
+
+.workout-side-menu-container {
+    padding: 20px;
+    color: rgb(179,179,179);
+    margin-top: 20;
+}
+
+.workout-side-menu-container .active {
+    margin-left: -3px;
+}
+
+.workout-side-menu-container .active:before {
+    content: "";
+    border-left: 3px solid #1db954;
+    position: relative;
+    left: -18px;
+}

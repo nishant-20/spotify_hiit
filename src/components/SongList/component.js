@@ -4,16 +4,20 @@ import moment from "moment";
 import "./SongList.css";
 
 class SongList extends Component {
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.token !== ""
-            && !nextProps.fetchSongsError
-            && nextProps.fetchSongsPending
-            && nextProps.viewType === "songs") {
-            this.props.fetchSongs(nextProps.token);
+    componentDidMount() {
+        if(this.props.songs !== "") {
+            return;
+        }
+
+        if(this.props.token !== ""
+            && !this.props.fetchSongsError
+            && this.props.fetchSongsPending
+            && this.props.viewType === "songs") {
+            this.props.fetchSongs(this.props.token);
 
             // Fetching available genres and top artists for a user for recommendations
-            this.props.fetchAvailableGenres(nextProps.token);
-            this.props.fetchTopArtists(nextProps.token);
+            this.props.fetchAvailableGenres(this.props.token);
+            this.props.fetchTopArtists(this.props.token);
         }
     }
 
