@@ -73,7 +73,7 @@
 
 .song-artist,
 .song-artist-header {
-    width: 300px;
+    width: 200px;
 }
 
 .song-album,
@@ -83,21 +83,21 @@
 
 .song-added
 .song-added-header {
-    width: 110px;
+    width: 100px;
 }
 
 .song-added {
-    width: 110px;
+    width: 100px;
 }
 
 .song-added-header {
-    width: 110px;
+    width: 100px;
     color: #ccc
 }
 
 .song-length,
 .song-length-header {
-    width: 90px;
+    width: 50px;
 }
 
 .song-title-header p,
