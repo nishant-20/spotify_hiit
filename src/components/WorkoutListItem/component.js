@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import "./WorkoutListItem.css";
+import WorkoutUpdateForm from "../WorkoutUpdateForm";
 
 // TODO: Disable the other action buttons when one action is in process
 class WorkoutListItem extends Component {
     state = {
-        expanded: false
+        expanded: false,
+        updateFormExpanded: false
     };
 
-    toggleExpanded = () => {
-        this.setState({
-            ...this.state,
-            expanded: !this.state.expanded
-        });
+    componentWillReceiveProps(nextProps) {
+        if(!nextProps.workoutUpdateFormExpandedFlag) {
+            this.setState({
+                ...this.state,
+                updateFormExpanded: false
+            });
+        }
     }
 
     secondsToMins = (inputSecs) => {
@@ -32,12 +36,23 @@ class WorkoutListItem extends Component {
         this.props.startWorkout(this.props.workout);
     }
 
-    handleEditClick = () => {
-        console.log("Inside handleEditClick");
+    toggleExpanded = () => {
+        this.setState({
+            ...this.state,
+            expanded: !this.state.expanded
+        });
     }
 
-    handleDeleteClick = () => {
-        console.log("Inside handleDeleteClick");
+    handleEditClick = () => {
+        this.props.changeWorkoutUpdateFormExpandedFlag(true);
+        this.setState({
+            ...this.state,
+            updateFormExpanded: true
+        });
+    }
+
+    handleDeleteClick = (e, id) => {
+        this.props.deleteWorkout(id);
     }
 
     render() {
@@ -61,7 +76,7 @@ class WorkoutListItem extends Component {
                     <div onClick={this.handleEditClick}>
                         <i className="fa fa-pencil workout-edit" aria-hidden="true" />
                     </div>
-                    <div onClick={this.handleDeleteClick}>
+                    <div onClick={(e) => this.handleDeleteClick(e, this.props.workout.id)}>
                         <i className="fa fa-trash workout-delete" aria-hidden="true" />
                     </div>
                 </div>
@@ -84,6 +99,13 @@ class WorkoutListItem extends Component {
                             }
                         </div> :
                         null
+                    }
+                    {
+                        this.props.workoutUpdateFormExpandedFlag && this.state.updateFormExpanded ?
+                            <WorkoutUpdateForm
+                                workout={this.props.workout}
+                                exercises={this.props.exercises} /> :
+                            null
                     }
             </div>
         );

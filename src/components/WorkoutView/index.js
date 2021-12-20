@@ -6,7 +6,7 @@ import WorkoutList from "../WorkoutList";
 import WorkoutHeader from "../WorkoutHeader";
 import WorkoutSideMenu from "../WorkoutSideMenu";
 import WorkoutMainView from "../WorkoutMainView";
-import { startWorkout, playWorkout, pauseWorkout, stopWorkout, increaseExerciseTime, changeExercise } from "../../actions/workoutActions";
+import { startWorkout, playWorkout, pauseWorkout, stopWorkout, increaseExerciseTime, changeExercise, deleteWorkout } from "../../actions/workoutActions";
 
 const WorkoutView = ({ workoutStopped,
     startWorkout,
@@ -14,7 +14,8 @@ const WorkoutView = ({ workoutStopped,
     pauseWorkout,
     stopWorkout,
     increaseExerciseTime,
-    changeExercise }) => (
+    changeExercise,
+    deleteWorkout }) => (
     <div>
         <WorkoutHeader />
         {
@@ -24,13 +25,17 @@ const WorkoutView = ({ workoutStopped,
                         <WorkoutSideMenu />
                     </div>
                     <div className="workout-main-section">
+                        <div className="workout-header-container">
+                            <h3 className="workout-header-title">My Workouts</h3>
+                        </div>
                         <div className="workout-main-section-container">
-                            <WorkoutList 
-                                startWorkout={startWorkout} />
+                            <WorkoutList
+                                startWorkout={startWorkout}
+                                deleteWorkout={deleteWorkout} />
                         </div>
                     </div>
                 </div> :
-                <WorkoutMainView 
+                <WorkoutMainView
                     playWorkout={playWorkout}
                     pauseWorkout={pauseWorkout}
                     stopWorkout={stopWorkout}
@@ -53,7 +58,8 @@ const mapDispatchToProps = dispatch => {
         pauseWorkout,
         stopWorkout,
         increaseExerciseTime,
-        changeExercise
+        changeExercise,
+        deleteWorkout
     }, dispatch);
 };
 

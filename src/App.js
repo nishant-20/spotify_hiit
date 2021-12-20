@@ -33,8 +33,9 @@ class App extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        // Need to check if the fetch user is necessary here
         if(nextProps.token) {
-            this.props.fetchUser(nextProps.token)
+            this.props.fetchUser(nextProps.token);
         }
 
         if(this.audio !== undefined) {

@@ -1,0 +1,96 @@
+.add-workout-form-container {
+    margin-left: 512px;
+}
+
+.workout-form-name {
+    display: flex;
+    margin: 8px 4px 4px 6px;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.workout-form-name-input {
+    width: 90%;
+}
+
+.exerciselist-item {
+    display: flex;
+    list-style-type: none;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.exercise-name {
+    width: 200px;
+    margin-left: 6px;
+}
+
+.exercise-name > select {
+    width: inherit;
+}
+
+.exercise-duration {
+    width: 45px;
+    margin-left: 6px;
+}
+
+.exercise-duration > select {
+    width: inherit;
+}
+
+.exercise-delete-container {
+    margin-left: 8px;
+}
+
+.exercise-delete-container .fa {
+    font-size: 15px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.exercise-delete {
+    color: #c02121;
+    opacity: 0.6;
+}
+
+.exercise-delete:hover {
+    opacity: 1;
+}
+
+.exerciselist-actions {
+    display: flex;
+    justify-content: flex-end;
+    width: 270px;
+}
+
+.submit-workout,
+.cancel-workout,
+.add-exercise {
+    display: flex;
+    vertical-align: middle;
+    border-radius: 4px;
+    padding: 4px;
+    margin: 8px 4px 4px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.add-exercise {
+    background: #1db954;
+}
+
+.submit-workout {
+    background: #05722b;
+}
+
+.cancel-workout {
+    background: #b81c1c;
+}
+
+.submit-workout:hover,
+.cancel-workout:hover,
+.add-exercise:hover {
+    opacity: 1;
+    border-color: #f0fff0;
+    border-width: 2px;
+}

@@ -1,6 +1,8 @@
 const defaultState = {
     title: "Songs",
-    toggleFlag: false
+    toggleFlag: false,
+    workoutAddFormExpandedFlag: false,
+    workoutUpdateFormExpandedFlag: false
 };
 
 export const uiReducer = (state = defaultState, action) => {
@@ -15,6 +17,18 @@ export const uiReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 toggleFlag: action.toggleFlag
+            };
+
+        case "CHANGE_WORKOUT_ADD_FORM_EXPANDED":
+            return {
+                ...state,
+                workoutAddFormExpandedFlag: action.workoutAddFormExpandedFlag
+            };
+
+        case "CHANGE_WORKOUT_UPDATE_FORM_EXPANDED":
+            return {
+                ...state,
+                workoutUpdateFormExpandedFlag: action.workoutUpdateFormExpandedFlag
             };
 
         default:

@@ -1,5 +1,6 @@
 .workoutlist-header-container {
     display: flex;
+    width: 512px;
     border-bottom: 1px solid #666;
     padding-bottom: 6px;
     margin-top: 20px;
@@ -22,7 +23,7 @@
 }
 
 .workoutlist-body-container {
-
+    width: 512px;
 }
 
 .workoutlist-footer-container {
@@ -32,27 +33,38 @@
     font-size: 14px;
 }
 
-.add-workout {
+.add-workout,
+.refresh-workout {
     display: flex;
     vertical-align: middle;
-    background: #1db954;
     border-radius: 4px;
     padding: 6px;
-    margin: 8px;
+    margin: 8px 4px;
     cursor: pointer;
     opacity: 0.8;
 }
 
-.add-workout:hover {
+.add-workout {
+    background: #1db954;
+}
+
+.refresh-workout {
+    background: #5ed7e7;
+}
+
+.add-workout:hover,
+.refresh-workout:hover {
     opacity: 1;
     border-color: #f0fff0;
     border-width: 2px;
 }
 
-.add-workout > p {
+.add-workout > p,
+.refresh-workout > p {
     margin-left: 6px;
 }
 
-.add-workout .fa {
+.add-workout .fa,
+.refresh-workout .fa {
     margin-top: 1px;
 }

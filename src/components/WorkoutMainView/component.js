@@ -30,8 +30,6 @@ class WorkoutMainView extends Component {
     }
 
     calculateTime() {
-        console.log("Inside calculateTime");
-
         const intervalId = setInterval(() => {
             if(this.props.exerciseTimeElapsed === this.props.workout.exercises[this.props.currIndex].duration && this.props.currIndex === this.props.workout.exercises.length-1) {
                 clearInterval(this.state.intervalId);
@@ -62,7 +60,6 @@ class WorkoutMainView extends Component {
     }
 
     playPrevExercise = () => {
-        console.log("Inside playPrevExercise");
         if(this.props.currIndex > 0) {
             this.props.pauseWorkout();
             // clearInterval(this.state.intervalId);
@@ -113,7 +110,7 @@ class WorkoutMainView extends Component {
                     <div className="stop-workout"
                         onClick={this.handleStopWorkout}>
                         <i className={`fa fa-2x fa-stop-circle exercise-stop`} aria-hidden="true" />
-                    </div>    
+                    </div>
                 </div>
             </div>
         );

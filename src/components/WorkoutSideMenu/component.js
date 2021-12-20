@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./WorkoutSideMenu.css";
 
+// TODO: Add workout history for a user
 const WorkoutSideMenu = ({
     token
 }) => {
@@ -15,7 +16,7 @@ const WorkoutSideMenu = ({
 
     return (
         <ul className="workout-side-menu-container">
-            <li 
+            <li
                 key="trending"
                 onClick={handleTrendingClick}
                 className="workout-side-menu-item" >
