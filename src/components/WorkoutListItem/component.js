@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./WorkoutListItem.css";
 import WorkoutUpdateForm from "../WorkoutUpdateForm";
+import WorkoutViewForm from "../WorkoutViewForm";
 
 // TODO: Disable the other action buttons when one action is in process
 class WorkoutListItem extends Component {
@@ -81,23 +82,8 @@ class WorkoutListItem extends Component {
                     </div>
                 </div>
                     { this.state.expanded ?
-                        <div className="exerciselist-container">
-                            {
-                                this.props.workout.exercises.map((exercise,i) => {
-                                        return (
-                                            <div key={i}
-                                                className="exerciselist-item">
-                                                <div className="exercise-name">
-                                                    <p>{exercise.name}</p>
-                                                </div>
-                                                <div className="exercise-duration">
-                                                    <p>{this.secondsToString(exercise.duration)}</p>
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                            }
-                        </div> :
+                        <WorkoutViewForm
+                            exercises={this.props.workout.exercises} /> :
                         null
                     }
                     {

@@ -12,6 +12,8 @@ import WorkoutView from "./components/WorkoutView";
 
 // TODO: Build MultiDevice Single Session
 // TODO: Implement Spotify SDK
+// TODO: Inspect redux actions and reducers
+// TODO: Inspect network calls made
 class App extends Component {
     static audio;
 

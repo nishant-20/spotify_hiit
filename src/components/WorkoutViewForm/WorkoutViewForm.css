@@ -1,0 +1,33 @@
+.view-workout-form-container {
+    margin-left: 512px;
+}
+
+.view-exerciselist-item {
+    display: flex;
+    width: 300px;
+    border-bottom: 1px solid #666;
+    list-style-type: none;
+    padding-bottom: 2px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.view-exercise-name {
+    width: 225px;
+}
+
+.view-exercise-duration {
+    width: 75px;
+}
+
+.view-exercise-name p,
+.view-exercise-duration p {
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: "Proxima-Thin", Georgia, sans-serif;
+    font-size: 13px;
+    color: #ccc;
+    padding: 0 8px;
+}
