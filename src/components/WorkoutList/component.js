@@ -35,16 +35,6 @@ class WorkoutList extends Component {
                 myHIITId: nextProps.myHIITUser.id
             });
         }
-
-        // Fetch workouts after addition of a workout
-        if(nextProps.addWorkoutPending && !this.props.addWorkoutPending) {
-            this.props.fetchWorkouts(this.state.myHIITUser.id);
-        }
-
-        // Fetch workouts after deletion of a workout
-        if(nextProps.deleteWorkoutPending && !this.props.deleteWorkoutPending) {
-            this.props.fetchWorkouts(this.state.myHIITUser.id);
-        }
     }
 
     renderWorkoutList() {

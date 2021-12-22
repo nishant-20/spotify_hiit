@@ -51,8 +51,8 @@ class WorkoutListItem extends Component {
         });
     }
 
-    handleDeleteClick = (e, id) => {
-        this.props.deleteWorkout(id);
+    handleDeleteClick = (e, id, userId) => {
+        this.props.deleteWorkout(id, userId);
     }
 
     render() {
@@ -76,7 +76,7 @@ class WorkoutListItem extends Component {
                     <div onClick={this.handleEditClick}>
                         <i className="fa fa-pencil workout-edit" aria-hidden="true" />
                     </div>
-                    <div onClick={(e) => this.handleDeleteClick(e, this.props.workout.id)}>
+                    <div onClick={(e) => this.handleDeleteClick(e, this.props.workout.id, this.props.myHIITUser.id)}>
                         <i className="fa fa-trash workout-delete" aria-hidden="true" />
                     </div>
                 </div>

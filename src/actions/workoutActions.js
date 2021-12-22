@@ -117,6 +117,7 @@ export const addWorkout = (workout, userId) => {
             return res.json();
         }).then(res => {
             dispatch(addWorkoutSuccess(res));
+            dispatch(fetchWorkouts(userId));
         }).catch(err => {
             dispatch(addWorkoutError(err));
         });
@@ -162,7 +163,8 @@ export const updateWorkout = (workout, id, userId) => {
         }).then(res => {
             return res.json();
         }).then(res => {
-            dispatch(updateWorkoutSuccess(res))
+            dispatch(updateWorkoutSuccess(res));
+            dispatch(fetchWorkouts(userId));
         }).catch(err => {
             dispatch(updateWorkoutError(err));
         });
@@ -188,7 +190,7 @@ export const deleteWorkoutError = (err) => {
     };
 };
 
-export const deleteWorkout = (id) => {
+export const deleteWorkout = (id, userId) => {
     return dispatch => {
         const request = new Request(`http://localhost:8080/v1/workouts/${id}`);
 
@@ -198,6 +200,7 @@ export const deleteWorkout = (id) => {
             method: "DELETE"
         }).then(res => {
             dispatch(deleteWorkoutSuccess(res));
+            dispatch(fetchWorkouts(userId));
         }).catch(err => {
             dispatch(deleteWorkoutError(err));
         });

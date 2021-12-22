@@ -6,7 +6,8 @@ import { changeWorkoutUpdateFormExpandedFlag } from "../../actions/uiActions";
 const mapStateToProps = (state) => {
     return {
         workouts: state.workoutReducer.workouts,
-        workoutUpdateFormExpandedFlag: state.uiReducer.workoutUpdateFormExpandedFlag
+        workoutUpdateFormExpandedFlag: state.uiReducer.workoutUpdateFormExpandedFlag,
+        myHIITUser: state.userReducer.myHIITUser
     };
 };
 
