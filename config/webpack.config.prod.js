@@ -232,7 +232,7 @@ module.exports = {
         ],
       },
       {
-        test: /endpoint.js$/,
+        test: /endpoints.js$/,
         loader: 'string-replace-loader',
         query: {
           multiple: [{
