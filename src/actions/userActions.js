@@ -1,3 +1,5 @@
+import { getBaseURLforMyHIIT, getBaseURLforSpotify } from "../utils/endpoints";
+
 export const fetchUserSuccess = (user) => {
     return {
         type: "FETCH_USER_SUCCESS",
@@ -13,8 +15,10 @@ export const fetchUserError = (err) => {
 
 export const fetchUser = (accessToken) => {
     // Get user details "/me" endpoint
+    const baseURL = getBaseURLforSpotify();
+
     return dispatch => {
-        const request = new Request("https://api.spotify.com/v1/me", {
+        const request = new Request(`${baseURL}/me`, {
             headers: new Headers({
                 "Authorization": "Bearer " + accessToken
             })
@@ -55,8 +59,10 @@ export const fetchMyHIITUserError = (err) => {
 };
 
 export const fetchMyHIITUser = (email) => {
+    const baseURL = getBaseURLforMyHIIT();
+
     return dispatch => {
-        const request = new Request(`http://localhost:8080/v1/users?email=${email}`);
+        const request = new Request(`${baseURL}/users?email=${email}`);
 
         dispatch(fetchMyHIITUserPending());
 

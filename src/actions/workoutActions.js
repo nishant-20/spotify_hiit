@@ -1,6 +1,8 @@
 // Uncomment when need to use the workout list from workouts.json
 // import workoutList from "../assets/workouts.json";
 
+import { getBaseURLforMyHIIT } from "../utils/endpoints";
+
 export const fetchWorkoutsPending = () => {
     return {
         type: "FETCH_WORKOUTS_PENDING"
@@ -21,9 +23,11 @@ export const fetchWorkoutsError = (err) => {
 };
 
 export const fetchWorkouts = (userId) => {
+    const baseURL = getBaseURLforMyHIIT();
+
     return dispatch => {
         // Fetch the workout list from the backend
-        const request = new Request(`http://localhost:8080/v1/workouts?user_id=${userId}`);
+        const request = new Request(`${baseURL}/workouts?user_id=${userId}`);
 
         dispatch(fetchWorkoutsPending());
 
@@ -61,9 +65,11 @@ export const fetchExercisesError = (err) => {
 };
 
 export const fetchExercises = () => {
+    const baseURL = getBaseURLforMyHIIT();
+
     return dispatch => {
         // Fetch the workout list from the backend
-        const request = new Request("http://localhost:8080/v1/exercises");
+        const request = new Request(`${baseURL}/exercises`);
 
         dispatch(fetchExercisesPending());
 
@@ -98,12 +104,13 @@ export const addWorkoutError = (err) => {
 
 export const addWorkout = (workout, userId) => {
     // Modifying payload to have user field
+    const baseURL = getBaseURLforMyHIIT();
     workout.user = {
         "id": userId
     };
 
     return dispatch => {
-        const request = new Request("http://localhost:8080/v1/workouts");
+        const request = new Request(`${baseURL}/workouts`);
 
         dispatch(addWorkoutPending());
 
@@ -145,12 +152,13 @@ export const updateWorkoutError = (err) => {
 
 export const updateWorkout = (workout, id, userId) => {
     // Modifying payload to have user field
+    const baseURL = getBaseURLforMyHIIT();
     workout.user = {
         "id": userId
     };
 
     return dispatch => {
-        const request = new Request(`http://localhost:8080/v1/workouts/${id}`);
+        const request = new Request(`${baseURL}/workouts/${id}`);
 
         dispatch(updateWorkoutPending());
 
@@ -191,8 +199,10 @@ export const deleteWorkoutError = (err) => {
 };
 
 export const deleteWorkout = (id, userId) => {
+    const baseURL = getBaseURLforMyHIIT();
+
     return dispatch => {
-        const request = new Request(`http://localhost:8080/v1/workouts/${id}`);
+        const request = new Request(`${baseURL}/workouts/${id}`);
 
         dispatch(deleteWorkoutPending());
 

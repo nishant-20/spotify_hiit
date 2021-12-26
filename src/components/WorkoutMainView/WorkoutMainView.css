@@ -1,5 +1,5 @@
 .workout-main-view-container {
-    width: 1280px;
+    width: 100vw;
     margin-top: 150px;
 }
 
@@ -91,7 +91,7 @@
     font-size: 18px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;    
+    text-overflow: ellipsis;
 }
 
 .prev-exercise:hover,
