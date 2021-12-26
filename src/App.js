@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { envToSpotifyAuthorizationURL } from "./utils/endpoints";
+import { getSpotifyAuthorizationURL } from "./utils/endpoints";
 import { fetchUser } from "./actions/userActions";
 import { setToken } from "./actions/tokenActions";
 import { playSong, stopSong, resumeSong, pauseSong } from "./actions/songActions";
@@ -21,7 +21,7 @@ class App extends Component {
     componentDidMount() {
         let hashParams = {};
         let e, r=/([^?=;]+)=?([^&;]*)/g, q = window.location.hash.substring(1);
-        const spotifyAuthorizationURL = envToSpotifyAuthorizationURL();
+        const spotifyAuthorizationURL = getSpotifyAuthorizationURL();
         // Fetch and set access_token
         while((e = r.exec(q))) {
             hashParams[e[1]] = decodeURIComponent(e[2]);
