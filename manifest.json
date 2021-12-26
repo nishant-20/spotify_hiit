@@ -1,0 +1,6 @@
+{
+    "short_name": "MyHIIT",
+    "name": "My HIIT UI",
+    "start_url": "./index.html",
+    "display": "standalone"
+  }
