@@ -18,6 +18,10 @@ import WorkoutView from "./components/WorkoutView";
 class App extends Component {
     static audio;
 
+    state = {
+        userFetchedSuccessFlag: false
+    };
+
     componentDidMount() {
         let hashParams = {};
         let e, r=/([^?=;]+)=?([^&;]*)/g, q = window.location.hash.substring(1);
@@ -37,8 +41,13 @@ class App extends Component {
 
     componentWillReceiveProps(nextProps) {
         // Need to check if the fetch user is necessary here
-        if(nextProps.token) {
+        if(nextProps.token && !this.state.userFetchedSuccessFlag) {
             this.props.fetchUser(nextProps.token);
+
+            this.setState({
+                ...this.state,
+                userFetchedSuccessFlag: true
+            });
         }
 
         if(this.audio !== undefined) {

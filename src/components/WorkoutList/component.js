@@ -12,26 +12,36 @@ class WorkoutList extends Component {
     };
 
     componentDidMount() {
-        this.props.fetchExercises();
+        if(this.props.exercises.length === 0) {
+            this.props.fetchExercises();
+        }
     }
 
     componentWillReceiveProps(nextProps) {
         // Fetch MyHIIT user details
-        if(nextProps.user !== null && this.state.myHIITUser === null) {
-            this.props.fetchMyHIITUser(nextProps.user.email);
+        // if(nextProps.user !== null && this.state.myHIITUser === null) {
+        //     console.log("State");
+        //     console.log(this.state);
+        //     console.log("Prev Props");
+        //     console.log(this.props);
+        //     console.log("Next Props");
+        //     console.log(nextProps);
 
-            this.setState({
-                ...this.state,
-                myHIITUser: nextProps.myHIITUser
-            })
-        }
+        //     this.props.fetchMyHIITUser(nextProps.user.email);
+
+        //     this.setState({
+        //         ...this.state,
+        //         myHIITUser: nextProps.myHIITUser
+        //     });
+        // }
 
         // Fetch MyHIIT user's associated workout routines
-        if(!nextProps.fetchMyHIITUserPending && !nextProps.fetchMyHIITUserError && nextProps.myHIITUser !== null && this.state.myHIITUser !== null && this.state.myHIITId === -1) {
+        if(!nextProps.fetchMyHIITUserPending && !nextProps.fetchMyHIITUserError && nextProps.myHIITUser !== null && this.state.myHIITId === -1) {
             this.props.fetchWorkouts(nextProps.myHIITUser.id);
 
             this.setState({
                 ...this.state,
+                myHIITUser: nextProps.myHIITUser,
                 myHIITId: nextProps.myHIITUser.id
             });
         }
@@ -55,7 +65,9 @@ class WorkoutList extends Component {
     }
 
     handleRefreshWorkouts = () => {
-        this.props.fetchWorkouts(this.state.myHIITUser.id);
+        if(this.state.myHIITUser !== null) {
+            this.props.fetchWorkouts(this.state.myHIITUser.id);
+        }
     }
 
     render() {

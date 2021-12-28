@@ -2,6 +2,7 @@
 
 const defaultState = {
     workouts: [],
+    exercises: [],
     currIndex: 0,
     workoutPlaying: false,
     workoutPaused: true,

@@ -1,5 +1,11 @@
 import { getBaseURLforMyHIIT, getBaseURLforSpotify } from "../utils/endpoints";
 
+export const fetchUserPending = () => {
+    return {
+        type: "FETCH_USER_PENDING"
+    }
+}
+
 export const fetchUserSuccess = (user) => {
     return {
         type: "FETCH_USER_SUCCESS",
@@ -24,6 +30,8 @@ export const fetchUser = (accessToken) => {
             })
         });
 
+        dispatch(fetchUserPending());
+
         fetch(request).then(res => {
             // For 401's we send the user back to the homepage and display the error over there
             if(res.statusText === "Unauthorized") {
@@ -32,6 +40,7 @@ export const fetchUser = (accessToken) => {
             return res.json();
         }).then(res => {
             dispatch(fetchUserSuccess(res));
+            dispatch(fetchMyHIITUser(res.email));
         }).catch(err => {
             dispatch(fetchUserError(err));
         });
