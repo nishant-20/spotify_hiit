@@ -2,6 +2,8 @@
 
 const defaultState = {
     workouts: [],
+    trendingWorkouts: [],
+    workoutViewType: "myWorkouts",
     exercises: [],
     currIndex: 0,
     workoutPlaying: false,
@@ -16,6 +18,12 @@ export const workoutReducer = (state = defaultState, action) => {
     // let updatedWorkouts;
 
     switch(action.type) {
+        case "UPDATE_WORKOUT_VIEW_TYPE":
+            return {
+                ...state,
+                workoutViewType: action.workoutViewType
+            };
+
         case "FETCH_WORKOUTS_PENDING":
             return {
                 ...state,
@@ -35,6 +43,27 @@ export const workoutReducer = (state = defaultState, action) => {
                 ...state,
                 fetchWorkoutsPending: false,
                 fetchWorkoutsError: true
+            };
+
+        case "FETCH_TRENDING_WORKOUTS_PENDING":
+            return {
+                ...state,
+                fetchTrendingWorkoutsPending: true
+            };
+
+        case "FETCH_TRENDING_WORKOUTS_SUCCESS":
+            return {
+                ...state,
+                trendingWorkouts: action.trendingWorkouts,
+                fetchTrendingWorkoutsPending: false,
+                fetchTrendingWorkoutsError: false
+            };
+
+        case "FETCH_TRENDING_WORKOUTS_ERROR":
+            return {
+                ...state,
+                fetchTrendingWorkoutsPending: false,
+                fetchTrendingWorkoutsError: true
             };
 
         case "FETCH_EXERCISES_PENDING":

@@ -1,10 +1,18 @@
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { updateWorkoutViewType } from "../../actions/workoutActions";
 import WorkoutSideMenu from "./component";
 
 const mapStateToProps = (state) => {
     return {
-        token: state.tokenReducer.token
+        workoutViewType: state.workoutReducer.workoutViewType
     };
 };
 
-export default connect(mapStateToProps, null)(WorkoutSideMenu);
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        updateWorkoutViewType
+    }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutSideMenu);

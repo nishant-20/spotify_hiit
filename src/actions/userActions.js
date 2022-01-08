@@ -71,7 +71,7 @@ export const fetchMyHIITUser = (email) => {
     const baseURL = getBaseURLforMyHIIT();
 
     return dispatch => {
-        const request = new Request(`${baseURL}/users?email=${email}`);
+        const request = new Request(`${baseURL}/user?email=${email}`);
 
         dispatch(fetchMyHIITUserPending());
 

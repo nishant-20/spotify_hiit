@@ -7,12 +7,9 @@ import WorkoutList from "./component";
 
 const mapStateToProps = (state) => {
     return {
-        user: state.userReducer.user ? state.userReducer.user : null,
         myHIITUser: state.userReducer.myHIITUser ? state.userReducer.myHIITUser : null,
         workouts: state.workoutReducer.workouts,
         exercises: state.workoutReducer.exercises ? state.workoutReducer.exercises : [],
-        addWorkoutPending: state.workoutReducer.addWorkoutPending,
-        deleteWorkoutPending: state.workoutReducer.deleteWorkoutPending,
         fetchMyHIITUserPending: state.userReducer.fetchMyHIITUserPending,
         fetchMyHIITUserError: state.userReducer.fetchMyHIITUserError,
         workoutAddFormExpandedFlag: state.uiReducer.workoutAddFormExpandedFlag,

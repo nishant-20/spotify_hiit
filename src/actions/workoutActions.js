@@ -3,6 +3,13 @@
 
 import { getBaseURLforMyHIIT } from "../utils/endpoints";
 
+export const updateWorkoutViewType = (workoutViewType) => {
+    return {
+        type: "UPDATE_WORKOUT_VIEW_TYPE",
+        workoutViewType
+    };
+};
+
 export const fetchWorkoutsPending = () => {
     return {
         type: "FETCH_WORKOUTS_PENDING"
@@ -27,7 +34,7 @@ export const fetchWorkouts = (userId) => {
 
     return dispatch => {
         // Fetch the workout list from the backend
-        const request = new Request(`${baseURL}/workouts?user_id=${userId}`);
+        const request = new Request(`${baseURL}/workout?user_id=${userId}`);
 
         dispatch(fetchWorkoutsPending());
 
@@ -44,6 +51,44 @@ export const fetchWorkouts = (userId) => {
         // dispatch(fetchWorkoutsSuccess(workouts));
     };
 };
+
+export const fetchTrendingWorkoutsPending = () => {
+    return {
+        type: "FETCH_TRENDING_WORKOUTS_PENDING"
+    };
+};
+
+export const fetchTrendingWorkoutsSuccess = (trendingWorkouts) => {
+    return {
+        type: "FETCH_TRENDING_WORKOUTS_SUCCESS",
+        trendingWorkouts
+    };
+};
+
+export const fetchTrendingWorkoutsError = (err) => {
+    return {
+        type: "FETCH_TRENDING_WORKOUTS_ERROR"
+    };
+};
+
+export const fetchTrendingWorkouts = () => {
+    const baseURL = getBaseURLforMyHIIT();
+
+    return dispatch => {
+        // Fetch trending workout list from the backend
+        const request = new Request(`${baseURL}/workout?trending=true`);
+
+        dispatch(fetchTrendingWorkoutsPending());
+
+        fetch(request).then(res => {
+            return res.json();
+        }).then(res => {
+            dispatch(fetchTrendingWorkoutsSuccess(res.workouts));
+        }).catch(err => {
+            dispatch(fetchTrendingWorkoutsError(err));
+        });
+    }
+}
 
 export const fetchExercisesPending = () => {
     return {
@@ -69,7 +114,7 @@ export const fetchExercises = () => {
 
     return dispatch => {
         // Fetch the workout list from the backend
-        const request = new Request(`${baseURL}/exercises`);
+        const request = new Request(`${baseURL}/exercise`);
 
         dispatch(fetchExercisesPending());
 
@@ -103,14 +148,18 @@ export const addWorkoutError = (err) => {
 };
 
 export const addWorkout = (workout, userId) => {
-    // Modifying payload to have user field
     const baseURL = getBaseURLforMyHIIT();
-    workout.user = {
-        "id": userId
-    };
+
+    // Modifying payload to have user field. Adding single user to the users list in the payload.
+    workout.trending = false;
+    workout.users = [
+            {
+            "id": userId
+            }
+        ];
 
     return dispatch => {
-        const request = new Request(`${baseURL}/workouts`);
+        const request = new Request(`${baseURL}/workout`);
 
         dispatch(addWorkoutPending());
 
@@ -158,7 +207,7 @@ export const updateWorkout = (workout, id, userId) => {
     };
 
     return dispatch => {
-        const request = new Request(`${baseURL}/workouts/${id}`);
+        const request = new Request(`${baseURL}/workout/${id}`);
 
         dispatch(updateWorkoutPending());
 
@@ -202,7 +251,7 @@ export const deleteWorkout = (id, userId) => {
     const baseURL = getBaseURLforMyHIIT();
 
     return dispatch => {
-        const request = new Request(`${baseURL}/workouts/${id}`);
+        const request = new Request(`${baseURL}/workout/${id}`);
 
         dispatch(deleteWorkoutPending());
 
