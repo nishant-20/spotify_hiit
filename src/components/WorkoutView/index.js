@@ -4,6 +4,8 @@ import { bindActionCreators } from "redux";
 import "./WorkoutView.css";
 import WorkoutTrendingList from "../WorkoutTrendingList";
 import WorkoutList from "../WorkoutList";
+import WorkoutLikedList from "../WorkoutLikedList";
+import WorkoutHistoryList from "../WorkoutHistoryList";
 import WorkoutHeader from "../WorkoutHeader";
 import WorkoutSideMenu from "../WorkoutSideMenu";
 import WorkoutMainView from "../WorkoutMainView";
@@ -56,11 +58,19 @@ const WorkoutView = ({ workoutStopped,
                             <div className="workout-main-section-container">
                                 {
                                     workoutViewType === "trending" ?
-                                    <WorkoutTrendingList
-                                        startWorkout={startWorkout}/>
-                                    : <WorkoutList
-                                        startWorkout={startWorkout}
-                                        deleteWorkout={deleteWorkout} />
+                                        <WorkoutTrendingList
+                                            startWorkout={startWorkout}/> :
+
+                                    workoutViewType === "myLikedWorkouts" ?
+                                        <WorkoutLikedList
+                                            startWorkout={startWorkout} /> :
+
+                                    workoutViewType === "myWorkoutHistory" ?
+                                        <WorkoutHistoryList /> :
+
+                                        <WorkoutList
+                                            startWorkout={startWorkout}
+                                            deleteWorkout={deleteWorkout} />
                                 }
                             </div>
                         </div>

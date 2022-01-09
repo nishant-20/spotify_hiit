@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { likeWorkout, unlikeWorkout, addWorkoutHistory } from "../../actions/workoutActions";
-import WorkoutTrendingListItem from "./component";
+import WorkoutLikedListItem from "./component";
 
 const mapStateToProps = (state) => {
     return {
@@ -17,4 +17,4 @@ const mapDispatchToProps = dispatch => {
     }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WorkoutTrendingListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(WorkoutLikedListItem);

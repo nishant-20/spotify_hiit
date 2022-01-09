@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import "./WorkoutTrendingListItem.css";
 import WorkoutViewForm from "../WorkoutViewForm";
+import "./WorkoutLikedListItem.css";
 
-class WorkoutTrendingListItem extends Component {
+class WorkoutLikedListItem extends Component {
     state = {
-        expanded: false
+        expanded: false,
+        liked: true
     };
 
     secondsToMins = (inputSecs) => {
@@ -23,10 +24,6 @@ class WorkoutTrendingListItem extends Component {
             }).length;
     }
 
-    handleUpvoteClick = () => {
-        console.log("handleUpvoteClick clicked");
-    }
-
     handlePlayClick = () => {
         this.props.startWorkout(this.props.workout);
         this.props.addWorkoutHistory(this.props.workout, this.props.myHIITUser.id);
@@ -39,17 +36,18 @@ class WorkoutTrendingListItem extends Component {
         });
     }
 
-    handleLikeClick = (liked) => {
-        if(liked) {
-            this.props.unlikeWorkout(this.props.workout, this.props.workout.id, this.props.myHIITUser.id);
-        } else {
-            this.props.likeWorkout(this.props.workout, this.props.workout.id, this.props.myHIITUser.id);
-        }
+    handleLikeClick = () => {
+        this.props.unlikeWorkout(this.props.workout, this.props.workout.id, this.props.myHIITUser.id);
+
+        this.setState({
+            ...this.state,
+            liked: false
+        });
     }
 
     render() {
         const viewIcon = this.state.expanded ? "fa-eye-slash" : "fa-eye";
-        const likedIcon = this.props.liked ? "fa-heart" : "fa-heart-o";
+        const likedIcon = this.state.liked ? "fa-heart" : "fa-heart-o";
 
         return (
             <div className="workoutlist-item-container">
@@ -57,11 +55,8 @@ class WorkoutTrendingListItem extends Component {
                     <div className="workout-name">
                         <p>{this.props.workout.name}</p>
                     </div>
-                    <div className="workout-description">
+                    <div className="likedworkout-description">
                         <p>{this.countExercises(this.props.workout.exercises) + " exercises | " + this.secondsToMins(this.props.workout.totalDuration)}</p>
-                    </div>
-                    <div onClick={this.handleUpvoteClick}>
-                        <i className="fa fa-arrow-up workout-upvote" aria-hidden="true" />
                     </div>
                     <div onClick={this.handlePlayClick}>
                         <i className="fa fa-play workout-play" aria-hidden="true" />
@@ -69,7 +64,7 @@ class WorkoutTrendingListItem extends Component {
                     <div onClick={this.toggleExpanded}>
                         <i className={`fa ${viewIcon} workout-info`} aria-hidden="true" />
                     </div>
-                    <div onClick={() => this.handleLikeClick(this.props.liked)}>
+                    <div onClick={this.handleLikeClick}>
                         <i className={`fa ${likedIcon} workout-like`} aria-hidden="true" />
                     </div>
                 </div>
@@ -83,4 +78,4 @@ class WorkoutTrendingListItem extends Component {
     }
 }
 
-export default WorkoutTrendingListItem;
+export default WorkoutLikedListItem;

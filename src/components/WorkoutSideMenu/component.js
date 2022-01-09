@@ -7,48 +7,44 @@ const WorkoutSideMenu = ({
     workoutViewType,
     updateWorkoutViewType
 }) => {
-    
+
     const handleMenuItemClick = (viewType) => {
         updateWorkoutViewType(viewType);
     }
 
-    const handleTrendingClick = () => {
-        console.log("handleTrendingClick clicked");
-    }
+    // const handleTrendingClick = () => {
+    //     console.log("handleTrendingClick clicked");
+    // }
 
-    const handleMyWorkoutsClick = () => {
-        console.log("handleMyWorkoutsClick clicked");
-    }
+    // const handleMyWorkoutsClick = () => {
+    //     console.log("handleMyWorkoutsClick clicked");
+    // }
 
-    const handleMyLikedWorkoutsClick = () => {
-        console.log("handleMyLikedWorkoutsClick clicked");
-    }
+    // const handleMyLikedWorkoutsClick = () => {
+    //     console.log("handleMyLikedWorkoutsClick clicked");
+    // }
 
-    const handleMyWorkoutHistoryClick = () => {
-        console.log("handleMyWorkoutHistoryClick clicked");
-    }
+    // const handleMyWorkoutHistoryClick = () => {
+    //     console.log("handleMyWorkoutHistoryClick clicked");
+    // }
 
     const renderWorkoutSideMenu = () => {
         const menu = [
             {
                 name: "Trending",
-                viewType: "trending",
-                action: handleTrendingClick
+                viewType: "trending"
             },
             {
                 name: "My Workouts",
-                viewType: "myWorkouts",
-                action: handleMyWorkoutsClick
+                viewType: "myWorkouts"
             },
             {
                 name: "Liked",
-                viewType: "myLikedWorkouts",
-                action: handleMyLikedWorkoutsClick
+                viewType: "myLikedWorkouts"
             },
             {
                 name: "History",
-                viewType: "myWorkoutHistory",
-                action: handleMyWorkoutHistoryClick
+                viewType: "myWorkoutHistory"
             },
         ];
 
@@ -58,7 +54,7 @@ const WorkoutSideMenu = ({
                     key={item.viewType}
                     className={workoutViewType === item.viewType ? "workout-side-menu-item active" : "workout-side-menu-item"}
                     onClick={() => {
-                        item.action();
+                        // item.action();
                         handleMenuItemClick(item.viewType)
                     }}>
                         {item.name}

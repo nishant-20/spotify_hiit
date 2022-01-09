@@ -1,9 +1,11 @@
 // import workoutList from "../assets/workouts.json";
 
 const defaultState = {
+    workoutViewType: "myWorkouts",
     workouts: [],
     trendingWorkouts: [],
-    workoutViewType: "myWorkouts",
+    likedWorkouts: [],
+    workoutHistories: [],
     exercises: [],
     currIndex: 0,
     workoutPlaying: false,
@@ -45,6 +47,27 @@ export const workoutReducer = (state = defaultState, action) => {
                 fetchWorkoutsError: true
             };
 
+        case "FETCH_LIKED_WORKOUTS_PENDING":
+            return {
+                ...state,
+                fetchLikedWorkoutsPending: true
+            };
+
+        case "FETCH_LIKED_WORKOUTS_SUCCESS":
+            return {
+                ...state,
+                likedWorkouts: action.likedWorkouts,
+                fetchLikedWorkoutsPending: false,
+                fetchLikedWorkoutsError: false
+            };
+
+        case "FETCH_LIKED_WORKOUTS_ERROR":
+            return {
+                ...state,
+                fetchLikedWorkoutsPending: false,
+                fetchLikedWorkoutsError: true
+            };
+
         case "FETCH_TRENDING_WORKOUTS_PENDING":
             return {
                 ...state,
@@ -64,6 +87,90 @@ export const workoutReducer = (state = defaultState, action) => {
                 ...state,
                 fetchTrendingWorkoutsPending: false,
                 fetchTrendingWorkoutsError: true
+            };
+
+        case "LIKE_WORKOUT_PENDING":
+            return {
+                ...state,
+                likeWorkoutPending: true
+            };
+
+        // Not using the updatedWorkout object which comes along with the action
+        case "LIKE_WORKOUT_SUCCESS":
+            return {
+                ...state,
+                likeWorkoutPending: false,
+                likeWorkoutError: false
+            };
+
+        case "LIKE_WORKOUT_ERROR":
+            return {
+                ...state,
+                likeWorkoutPending: false,
+                likeWorkoutError: true
+            };
+
+        case "UNLIKE_WORKOUT_PENDING":
+            return {
+                ...state,
+                unlikeWorkoutPending: true
+            };
+
+        // Not using the updatedWorkout object which comes along with the action
+        case "UNLIKE_WORKOUT_SUCCESS":
+            return {
+                ...state,
+                unlikeWorkoutPending: false,
+                unlikeWorkoutError: false
+            };
+
+        case "UNLIKE_WORKOUT_ERROR":
+            return {
+                ...state,
+                unlikeWorkoutPending: false,
+                unlikeWorkoutError: true
+            };
+
+        case "FETCH_WORKOUT_HISTORY_PENDING":
+            return {
+                ...state,
+                fetchWorkoutHistoryPending: true
+            };
+
+        case "FETCH_WORKOUT_HISTORY_SUCCESS":
+            return {
+                ...state,
+                workoutHistories: action.workoutHistories,
+                fetchWorkoutHistoryPending: false,
+                fetchWorkoutHistoryError: false
+            };
+
+        case "FETCH_WORKOUT_HISTORY_ERROR":
+            return {
+                ...state,
+                fetchWorkoutHistoryPending: false,
+                fetchWorkoutHistoryError: true
+            };
+
+        case "ADD_WORKOUT_HISTORY_PENDING":
+            return {
+                ...state,
+                addWorkoutHistoryPending: true
+            };
+
+        // Not using the updatedWorkout object which comes along with the action
+        case "ADD_WORKOUT_HISTORY_SUCCESS":
+            return {
+                ...state,
+                addWorkoutHistoryPending: false,
+                addWorkoutHistoryError: false
+            };
+
+        case "ADD_WORKOUT_HISTORY_ERROR":
+            return {
+                ...state,
+                addWorkoutHistoryPending: false,
+                addWorkoutHistoryError: true
             };
 
         case "FETCH_EXERCISES_PENDING":

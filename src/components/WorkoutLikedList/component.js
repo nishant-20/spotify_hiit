@@ -1,27 +1,22 @@
 import React, { Component } from "react";
-import "./WorkoutTrendingList.css";
-import WorkoutTrendingListItem from "../WorkoutTrendingListItem";
+import "./WorkoutLikedList.css";
+import WorkoutLikedListItem from "../WorkoutLikedListItem";
 
-class WorkoutTrendingList extends Component {
+class WorkoutLikedList extends Component {
     state = {
-        trendingWorkouts: this.props.trendingWorkouts
+        likedWorkouts: this.props.likedWorkouts
     };
 
     componentDidMount() {
-        this.props.fetchTrendingWorkouts();
+        this.props.fetchLikedWorkouts(this.props.myHIITUser.id);
     }
 
-    renderTrendingWorkoutList() {
-        const myWorkoutIds = this.props.likedWorkouts.map(workout => workout.id);
-
-        return this.props.trendingWorkouts.map((workout,i) => {
-            const liked = myWorkoutIds.includes(workout.id);
-
+    renderLikedWorkoutList() {
+        return this.props.likedWorkouts.map((workout,i) => {
             return (
-                <WorkoutTrendingListItem
+                <WorkoutLikedListItem
                     key={i}
                     workout={workout}
-                    liked={liked}
                     startWorkout={this.props.startWorkout} />
             )
         });
@@ -39,11 +34,11 @@ class WorkoutTrendingList extends Component {
                     </div>
                 </div>
                 <div className="workoutlist-body-container">
-                    {this.props.trendingWorkouts ? this.renderTrendingWorkoutList() : null}
+                    {this.props.likedWorkouts ? this.renderLikedWorkoutList() : null}
                 </div>
             </div>
         );
     }
 }
 
-export default WorkoutTrendingList;
+export default WorkoutLikedList;

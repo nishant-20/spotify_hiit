@@ -33,8 +33,15 @@ class WorkoutListItem extends Component {
         return inputSecs.toString() + " secs";
     }
 
+    countExercises = (exercises) => {
+        return exercises.filter(exercise => {
+                return exercise.name !== "Rest"
+            }).length;
+    }
+
     handlePlayClick = () => {
         this.props.startWorkout(this.props.workout);
+        this.props.addWorkoutHistory(this.props.workout, this.props.myHIITUser.id);
     }
 
     toggleExpanded = () => {
@@ -66,7 +73,7 @@ class WorkoutListItem extends Component {
                         <p>{this.props.workout.name}</p>
                     </div>
                     <div className="workout-description">
-                        <p>{this.props.workout.exercises.length + " exercises | " + this.secondsToMins(this.props.workout.totalDuration)}</p>
+                        <p>{this.countExercises(this.props.workout.exercises) + " exercises | " + this.secondsToMins(this.props.workout.totalDuration)}</p>
                     </div>
                     <div onClick={this.handlePlayClick}>
                         <i className="fa fa-play workout-play" aria-hidden="true" />

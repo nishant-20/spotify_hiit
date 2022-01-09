@@ -1,0 +1,57 @@
+.workouthistory-name {
+    width: 200px;
+}
+
+.workouthistory-description {
+    width: 200px;
+}
+
+.workouthistory-time {
+    width: 300px;
+}
+
+.workouthistory-name p,
+.workouthistory-description p,
+.workouthistory-time p {
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 8px;
+    line-height: 42px;
+}
+
+.workouthistorylist-item-container {
+
+}
+
+.workouthistorylist-item {
+    display: flex;
+    list-style-type: none;
+    border-bottom: 1px solid #666;
+    line-height: 40px;
+    font-size: 14px;
+}
+
+.workouthistorylist-item:hover {
+    background: rgb(51, 51, 51);
+}
+
+.workouthistorylist-item .fa {
+    font-size: 15px;
+    padding: 0 7px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.workouthistory-info {
+    color: #3581b3;
+}
+
+.workouthistory-info {
+    opacity: 0.6;
+}
+
+.workouthistory-info:hover {
+    opacity: 1;
+}

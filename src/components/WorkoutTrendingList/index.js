@@ -5,7 +5,9 @@ import WorkoutTrendingList from "./component";
 
 const mapStateToProps = (state) => {
     return {
-        trendingWorkouts: state.workoutReducer.trendingWorkouts
+        trendingWorkouts: state.workoutReducer.trendingWorkouts,
+        likedWorkouts: state.workoutReducer.likedWorkouts,
+        workouts: state.workoutReducer.workouts,
     };
 };
 
