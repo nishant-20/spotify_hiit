@@ -7,10 +7,11 @@ h3 {
   padding: 0;
 }
 
+/* Uncomment background and color to change to light mode */
 body {
     font-family: 'Proxima Nova', Georgia, sans-serif;
-    /* background: rgb(24,24,24); */
-    /* color: rgb(255,255,255); */
+    background: rgb(24,24,24);
+    color: rgb(255,255,255);
     /* max-width: 1400px; */
     margin: 0 auto;
     padding: 0;
