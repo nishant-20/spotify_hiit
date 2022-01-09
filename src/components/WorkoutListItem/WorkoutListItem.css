@@ -34,7 +34,7 @@
 
 .workoutlist-item .fa {
     font-size: 15px;
-    padding: 0 8px;
+    padding: 0 7px;
     vertical-align: middle;
     cursor: pointer;
 }
@@ -48,7 +48,7 @@
 }
 
 .workout-edit {
-    color: #000000;
+    color: #f1eded;
 }
 
 .workout-delete {

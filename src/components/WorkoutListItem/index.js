@@ -2,10 +2,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import WorkoutListItem from "./component";
 import { changeWorkoutUpdateFormExpandedFlag } from "../../actions/uiActions";
+import { addWorkoutHistory } from "../../actions/workoutActions";
 
 const mapStateToProps = (state) => {
     return {
-        workouts: state.workoutReducer.workouts,
         workoutUpdateFormExpandedFlag: state.uiReducer.workoutUpdateFormExpandedFlag,
         myHIITUser: state.userReducer.myHIITUser
     };
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        changeWorkoutUpdateFormExpandedFlag
+        changeWorkoutUpdateFormExpandedFlag,
+        addWorkoutHistory
     }, dispatch);
 };
 

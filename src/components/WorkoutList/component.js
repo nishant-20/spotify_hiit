@@ -38,6 +38,7 @@ class WorkoutList extends Component {
         // Fetch MyHIIT user's associated workout routines
         if(!nextProps.fetchMyHIITUserPending && !nextProps.fetchMyHIITUserError && nextProps.myHIITUser !== null && this.state.myHIITId === -1) {
             this.props.fetchWorkouts(nextProps.myHIITUser.id);
+            this.props.fetchLikedWorkouts(nextProps.myHIITUser.id);
 
             this.setState({
                 ...this.state,

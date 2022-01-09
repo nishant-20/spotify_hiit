@@ -13,8 +13,8 @@ const envToSpotifyEndpoint = {
     "dev" : "https://api.spotify.com/v1"
 }
 
-const _env = 'STR_REPLACE_ENV';
 // check webpack string-replace-loader configuration
+// const _env = 'STR_REPLACE_ENV';
 // let platformEnv = _env === "remote" ? 'prd' : 'dev';
 const windowLocation = window.location.href;
 const platformEnv = windowLocation.indexOf('spotify_hiit') !== -1 ? 'prd' : 'dev';

@@ -4,36 +4,75 @@ import "./WorkoutSideMenu.css";
 
 // TODO: Add workout history for a user
 const WorkoutSideMenu = ({
-    token
+    workoutViewType,
+    updateWorkoutViewType
 }) => {
-    const handleTrendingClick = () => {
-        console.log("handleTrendingClick clicked");
+
+    const handleMenuItemClick = (viewType) => {
+        updateWorkoutViewType(viewType);
     }
 
-    const handleMyWorkoutsClick = () => {
-        console.log("handleMyWorkoutsClick clicked");
+    // const handleTrendingClick = () => {
+    //     console.log("handleTrendingClick clicked");
+    // }
+
+    // const handleMyWorkoutsClick = () => {
+    //     console.log("handleMyWorkoutsClick clicked");
+    // }
+
+    // const handleMyLikedWorkoutsClick = () => {
+    //     console.log("handleMyLikedWorkoutsClick clicked");
+    // }
+
+    // const handleMyWorkoutHistoryClick = () => {
+    //     console.log("handleMyWorkoutHistoryClick clicked");
+    // }
+
+    const renderWorkoutSideMenu = () => {
+        const menu = [
+            {
+                name: "Trending",
+                viewType: "trending"
+            },
+            {
+                name: "My Workouts",
+                viewType: "myWorkouts"
+            },
+            {
+                name: "Liked",
+                viewType: "myLikedWorkouts"
+            },
+            {
+                name: "History",
+                viewType: "myWorkoutHistory"
+            },
+        ];
+
+        return menu.map(item => {
+            return (
+                <li
+                    key={item.viewType}
+                    className={workoutViewType === item.viewType ? "workout-side-menu-item active" : "workout-side-menu-item"}
+                    onClick={() => {
+                        // item.action();
+                        handleMenuItemClick(item.viewType)
+                    }}>
+                        {item.name}
+                </li>
+            );
+        });
     }
 
     return (
         <ul className="workout-side-menu-container">
-            <li
-                key="trending"
-                onClick={handleTrendingClick}
-                className="workout-side-menu-item" >
-                Trending
-            </li>
-            <li
-                key="myWorkouts"
-                onClick={handleMyWorkoutsClick}
-                className="workout-side-menu-item active" >
-                My Workouts
-            </li>
+            {renderWorkoutSideMenu()}
         </ul>
     );
 };
 
 WorkoutSideMenu.propTypes = {
-    token: PropTypes.string
+    workoutViewType: PropTypes.string,
+    updateWorkoutViewType: PropTypes.func
 };
 
 export default WorkoutSideMenu;

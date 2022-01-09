@@ -1,0 +1,16 @@
+.workout-upvote {
+    color: #5e666d;
+}
+
+.workout-like {
+    color: #df2020;
+}
+
+.workout-upvote {
+    opacity: 0.6;
+}
+
+.workout-upvote:hover {
+    color: #e68327;
+    opacity: 1;
+}

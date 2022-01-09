@@ -1,23 +1,12 @@
 import React, { Component } from "react";
-import "./WorkoutListItem.css";
-import WorkoutUpdateForm from "../WorkoutUpdateForm";
 import WorkoutViewForm from "../WorkoutViewForm";
+import "./WorkoutLikedListItem.css";
 
-// TODO: Disable the other action buttons when one action is in process
-class WorkoutListItem extends Component {
+class WorkoutLikedListItem extends Component {
     state = {
         expanded: false,
-        updateFormExpanded: false
+        liked: true
     };
-
-    componentWillReceiveProps(nextProps) {
-        if(!nextProps.workoutUpdateFormExpandedFlag) {
-            this.setState({
-                ...this.state,
-                updateFormExpanded: false
-            });
-        }
-    }
 
     secondsToMins = (inputSecs) => {
         const mins = Math.floor(inputSecs/60);
@@ -27,10 +16,6 @@ class WorkoutListItem extends Component {
                 mins < 2 ?
                 ( mins + " min ") + secs + " secs" :
                 ( mins + " mins ") + secs + " secs";
-    }
-
-    secondsToString = (inputSecs) => {
-        return inputSecs.toString() + " secs";
     }
 
     countExercises = (exercises) => {
@@ -51,20 +36,18 @@ class WorkoutListItem extends Component {
         });
     }
 
-    handleEditClick = () => {
-        this.props.changeWorkoutUpdateFormExpandedFlag(true);
+    handleLikeClick = () => {
+        this.props.unlikeWorkout(this.props.workout, this.props.workout.id, this.props.myHIITUser.id);
+
         this.setState({
             ...this.state,
-            updateFormExpanded: true
+            liked: false
         });
-    }
-
-    handleDeleteClick = (e, id, userId) => {
-        this.props.deleteWorkout(id, userId);
     }
 
     render() {
         const viewIcon = this.state.expanded ? "fa-eye-slash" : "fa-eye";
+        const likedIcon = this.state.liked ? "fa-heart" : "fa-heart-o";
 
         return (
             <div className="workoutlist-item-container">
@@ -72,20 +55,17 @@ class WorkoutListItem extends Component {
                     <div className="workout-name">
                         <p>{this.props.workout.name}</p>
                     </div>
-                    <div className="workout-description">
+                    <div className="likedworkout-description">
                         <p>{this.countExercises(this.props.workout.exercises) + " exercises | " + this.secondsToMins(this.props.workout.totalDuration)}</p>
                     </div>
                     <div onClick={this.handlePlayClick}>
                         <i className="fa fa-play workout-play" aria-hidden="true" />
                     </div>
                     <div onClick={this.toggleExpanded}>
-                        <i className={`fa  ${viewIcon} workout-info`} aria-hidden="true" />
+                        <i className={`fa ${viewIcon} workout-info`} aria-hidden="true" />
                     </div>
-                    <div onClick={this.handleEditClick}>
-                        <i className="fa fa-pencil workout-edit" aria-hidden="true" />
-                    </div>
-                    <div onClick={(e) => this.handleDeleteClick(e, this.props.workout.id, this.props.myHIITUser.id)}>
-                        <i className="fa fa-trash workout-delete" aria-hidden="true" />
+                    <div onClick={this.handleLikeClick}>
+                        <i className={`fa ${likedIcon} workout-like`} aria-hidden="true" />
                     </div>
                 </div>
                     { this.state.expanded ?
@@ -93,16 +73,9 @@ class WorkoutListItem extends Component {
                             exercises={this.props.workout.exercises} /> :
                         null
                     }
-                    {
-                        this.props.workoutUpdateFormExpandedFlag && this.state.updateFormExpanded ?
-                            <WorkoutUpdateForm
-                                workout={this.props.workout}
-                                exercises={this.props.exercises} /> :
-                            null
-                    }
             </div>
         );
     }
 }
 
-export default WorkoutListItem;
+export default WorkoutLikedListItem;

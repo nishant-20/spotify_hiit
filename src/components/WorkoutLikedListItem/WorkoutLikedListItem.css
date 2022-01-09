@@ -1,0 +1,12 @@
+.likedworkout-description {
+    width: 230px;
+}
+
+.likedworkout-description p {
+    width: inherit;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 8px;
+    line-height: 42px;
+}

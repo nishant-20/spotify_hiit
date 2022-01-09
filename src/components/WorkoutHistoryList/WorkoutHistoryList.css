@@ -1,0 +1,39 @@
+.workouthistorylist-header-container {
+    display: flex;
+    width: 730px;
+    border-bottom: 1px solid #666;
+    padding-bottom: 6px;
+    margin-top: 20px;
+}
+.workouthistory-name-header {
+    width: 200px;
+}
+
+.workouthistory-description-header {
+    width: 200px;
+}
+
+.workouthistory-date-header {
+    width: 300px;
+}
+
+.workouthistory-name-header p,
+.workouthistory-description-header p,
+.workouthistory-date-header p {
+    font-family: "Proxima Thin", Georgia, sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #ccc;
+    padding: 0 8px;
+}
+
+.workouthistorylist-body-container {
+    width: 730px;
+}
+
+.workouthistorylist-footer-container {
+    display: flex;
+    justify-content: end;
+    line-height: 40px;
+    font-size: 14px;
+}
